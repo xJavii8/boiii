@@ -2,6 +2,8 @@
 #include "macho_loader.hpp"
 #include "utils/hook.hpp"
 
+#include <pthread.h>
+
 #pragma region runtime
 
 int NSGetExecutablePath(char* buf, uint32_t* bufsize)
@@ -34,12 +36,13 @@ char* realpath(const char* path, char* resolved_path)
 
 std::vector<std::function<void()>> exit_handlers;
 
-int cxa_atexit(void (*func) (void *), void * arg, void * dso_handle)
+int cxa_atexit(void (*func)(void*), void* arg, void* dso_handle)
 {
-	exit_handlers.emplace_back([arg, func]() {
+	exit_handlers.emplace_back([arg, func]()
+	{
 		func(arg);
 	});
-	
+
 	return 0;
 }
 
@@ -95,6 +98,44 @@ void wrap_calling_convention(std::unordered_map<std::string, void*>& symbols)
 	}
 }
 
+bool isPrime(int n)
+{
+	// Corner cases
+	if (n <= 1) return false;
+	if (n <= 3) return true;
+
+	// This is checked so that we can skip 
+	// middle five numbers in below loop
+	if (n % 2 == 0 || n % 3 == 0) return false;
+
+	for (int i = 5; i * i <= n; i = i + 6)
+		if (n % i == 0 || n % (i + 2) == 0)
+			return false;
+
+	return true;
+}
+
+size_t
+__next_prime(size_t prime)
+{
+	if (prime <= 1)
+		return 2;
+
+	bool found = false;
+
+	// Loop continuously until isPrime returns
+	// true for a number greater than n
+	while (!found)
+	{
+		prime++;
+
+		if (isPrime(static_cast<int>(prime)))
+			found = true;
+	}
+
+	return prime;
+}
+
 std::unordered_map<std::string, void*> build_symbol_map()
 {
 	std::unordered_map<std::string, void*> symbols;
@@ -118,6 +159,54 @@ std::unordered_map<std::string, void*> build_symbol_map()
 	symbols["realpath"] = realpath;
 	symbols["___cxa_atexit"] = cxa_atexit;
 
+	symbols["_pthread_attr_destroy"] = pthread_attr_destroy;
+	symbols["_pthread_attr_init"] = pthread_attr_init;
+	symbols["_pthread_attr_setdetachstate"] = pthread_attr_setdetachstate;
+	symbols["_pthread_attr_setstacksize"] = pthread_attr_setstacksize;
+	symbols["_pthread_cancel"] = pthread_cancel;
+	symbols["_pthread_cond_broadcast"] = pthread_cond_broadcast;
+	symbols["_pthread_cond_destroy"] = pthread_cond_destroy;
+	symbols["_pthread_cond_init"] = pthread_cond_init;
+	symbols["_pthread_cond_signal"] = pthread_cond_signal;
+	symbols["_pthread_cond_timedwait"] = pthread_cond_timedwait;
+	symbols["_pthread_cond_wait"] = pthread_cond_wait;
+	symbols["_pthread_create"] = pthread_create;
+	symbols["_pthread_detach"] = pthread_detach;
+	symbols["_pthread_equal"] = pthread_equal;
+	symbols["_pthread_exit"] = pthread_exit;
+	symbols["_pthread_getname_np"] = pthread_getname_np;
+	symbols["_pthread_getschedparam"] = pthread_getschedparam;
+	symbols["_pthread_getspecific"] = pthread_getspecific;
+	symbols["_pthread_join"] = pthread_join;
+	symbols["_pthread_key_create"] = pthread_key_create;
+	symbols["_pthread_key_delete"] = pthread_key_delete;
+	//symbols["_pthread_mach_thread_np"] = pthread_mach_thread_np;
+	//symbols["_pthread_main_np"] = pthread_main_np;
+	symbols["_pthread_mutex_destroy"] = pthread_mutex_destroy;
+	symbols["_pthread_mutex_init"] = pthread_mutex_init;
+	symbols["_pthread_mutex_lock"] = pthread_mutex_lock;
+	symbols["_pthread_mutex_trylock"] = pthread_mutex_trylock;
+	symbols["_pthread_mutex_unlock"] = pthread_mutex_unlock;
+	symbols["_pthread_mutexattr_destroy"] = pthread_mutexattr_destroy;
+	symbols["_pthread_mutexattr_init"] = pthread_mutexattr_init;
+	symbols["_pthread_mutexattr_settype"] = pthread_mutexattr_settype;
+	symbols["_pthread_once"] = pthread_once;
+	symbols["_pthread_rwlock_destroy"] = pthread_rwlock_destroy;
+	symbols["_pthread_rwlock_init"] = pthread_rwlock_init;
+	symbols["_pthread_rwlock_rdlock"] = pthread_rwlock_rdlock;
+	symbols["_pthread_rwlock_tryrdlock"] = pthread_rwlock_tryrdlock;
+	symbols["_pthread_rwlock_trywrlock"] = pthread_rwlock_trywrlock;
+	symbols["_pthread_rwlock_unlock"] = pthread_rwlock_unlock;
+	symbols["_pthread_rwlock_wrlock"] = pthread_rwlock_wrlock;
+	symbols["_pthread_self"] = pthread_self;
+	symbols["_pthread_setcanceltype"] = pthread_setcanceltype;
+	symbols["_pthread_setname_np"] = pthread_setname_np;
+	symbols["_pthread_setschedparam"] = pthread_setschedparam;
+	symbols["_pthread_setspecific"] = pthread_setspecific;
+	//symbols["_pthread_sigmask"] = pthread_sigmask;
+
+	symbols["__ZNSt3__112__next_primeEm"] = __next_prime;
+
 	wrap_calling_convention(symbols);
 
 	// Symbols without calling convention wrapping
@@ -125,8 +214,8 @@ std::unordered_map<std::string, void*> build_symbol_map()
 	static uint64_t guard = 0x1337;
 	symbols["___stack_chk_guard"] = &guard;
 
-        static uint64_t point[2] = {0,0};
-        symbols["_NSZeroPoint"] = &point;
+	static uint64_t point[2] = {0, 0};
+	symbols["_NSZeroPoint"] = &point;
 
 	return symbols;
 }
@@ -141,7 +230,7 @@ void* resolve_symbol(const std::string& module, const std::string& function)
 		return symbol->second;
 	}
 
-        printf("Needed symbol %s (%s)\n", function.data(), module.data());
+	printf("Needed symbol %s (%s)\n", function.data(), module.data());
 
 	return nullptr;
 }

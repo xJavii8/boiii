@@ -125,6 +125,9 @@ std::unordered_map<std::string, void*> build_symbol_map()
 	static uint64_t guard = 0x1337;
 	symbols["___stack_chk_guard"] = &guard;
 
+        static uint64_t point[2] = {0,0};
+        symbols["_NSZeroPoint"] = &point;
+
 	return symbols;
 }
 
@@ -137,6 +140,8 @@ void* resolve_symbol(const std::string& module, const std::string& function)
 	{
 		return symbol->second;
 	}
+
+        printf("Needed symbol %s (%s)\n", function.data(), module.data());
 
 	return nullptr;
 }

@@ -146,6 +146,7 @@ void macho_loader::map_imports() const
 	for (const auto& i : import_list)
 	{
 		//printf("Importing symbols from: %s\n", i.name.data());
+	        if(i.name == "<self>") continue;
 
 		for (const auto& symbol : i.imports)
 		{

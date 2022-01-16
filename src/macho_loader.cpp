@@ -86,7 +86,7 @@ void macho_loader::map_segments() const
 
 void macho_loader::map_imports() const
 {
-	struct import
+	struct import_symbol
 	{
 		std::string name;
 		macho::bind bind;
@@ -101,7 +101,7 @@ void macho_loader::map_imports() const
 
 		dylib_command* command;
 		std::string name;
-		std::vector<import> imports;
+		std::vector<import_symbol> imports;
 	};
 
 	std::vector<import_lib> import_list;
@@ -121,7 +121,7 @@ void macho_loader::map_imports() const
 	const auto binds = this->binary_.get_binds();
 	for (const auto& bind : binds)
 	{
-		import i;
+		import_symbol i;
 		i.name = bind.name;
 		i.bind = bind;
 
@@ -132,7 +132,7 @@ void macho_loader::map_imports() const
 
 		auto& i_list = import_list[bind.ordinal /*- 1*/].imports;
 
-		if (std::find_if(i_list.begin(), i_list.end(), [&bind](const import& i)
+		if (std::find_if(i_list.begin(), i_list.end(), [&bind](const import_symbol& i)
 		{
 			return i.name == bind.name;
 		}) == i_list.end())

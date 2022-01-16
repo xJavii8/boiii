@@ -116,16 +116,16 @@ public:
 			break;
 
 		case BIND_OPCODE_DO_BIND:
-			addBind();
+			add_bind();
 			break;
 
 		case BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB:
-			addBind();
+			add_bind();
 			bind_.seg_offset += uleb128(p);
 			break;
 
 		case BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED:
-			addBind();
+			add_bind();
 			bind_.seg_offset += imm * sizeof(void*);
 			break;
 
@@ -136,7 +136,7 @@ public:
 
 				for (uint64_t i = 0; i < count; i++)
 				{
-					addBind();
+					add_bind();
 					bind_.seg_offset += skip;
 				}
 				break;
@@ -147,7 +147,7 @@ public:
 		}
 	}
 
-	void addBind()
+	void add_bind()
 	{
 		macho::bind bind{};
 		binds_.push_back(bind_);

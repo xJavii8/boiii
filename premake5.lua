@@ -94,7 +94,7 @@ workspace "t7x"
 	configuration {}
 
 	project "t7x"
-		kind "WindowedApp"
+		kind "ConsoleApp"
 		language "C++"
 
 		pchheader "std_include.hpp"

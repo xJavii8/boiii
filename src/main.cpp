@@ -136,6 +136,11 @@ __next_prime(size_t prime)
 	return prime;
 }
 
+int dyld_stub_binder()
+{
+  return 0;
+}
+
 std::unordered_map<std::string, void*> build_symbol_map()
 {
 	std::unordered_map<std::string, void*> symbols;
@@ -207,6 +212,9 @@ std::unordered_map<std::string, void*> build_symbol_map()
 
 	symbols["__ZNSt3__112__next_primeEm"] = __next_prime;
 
+	symbols["_printf"] = printf;
+	symbols["dyld_stub_binder"] = dyld_stub_binder;
+
 	wrap_calling_convention(symbols);
 
 	// Symbols without calling convention wrapping
@@ -235,17 +243,8 @@ void* resolve_symbol(const std::string& module, const std::string& function)
 	return nullptr;
 }
 
-int __stdcall WinMain(HINSTANCE, HINSTANCE, PSTR, int)
+int main(const int argc, char* argv[])
 {
-#if _DEBUG
-	AllocConsole();
-	AttachConsole(GetCurrentProcessId());
-
-	freopen("CONIN$", "r", stdin);
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
-#endif
-
 	macho_loader loader("./CoDBlkOps3_Exe", resolve_symbol);
 
 	for (const auto& constructor : loader.get_mapped_binary().get_constructors())
@@ -255,7 +254,7 @@ int __stdcall WinMain(HINSTANCE, HINSTANCE, PSTR, int)
 
 	const auto entry_point = utils::hook::assemble([&loader](utils::hook::assembler& a)
 	{
-		a.sub(rsp, 8);
+		a.push(rax);
 		a.pushad64();
 
 		a.xor_(rdi, rdi);
@@ -263,12 +262,16 @@ int __stdcall WinMain(HINSTANCE, HINSTANCE, PSTR, int)
 
 		a.call(loader.get_mapped_binary().get_entry_point());
 
+	        a.mov(qword_ptr(rsp, 0x80), rax);
+
 		a.popad64();
-		a.add(rsp, 8);
+		a.pop(rax);
 		a.ret();
 	});
 
-	static_cast<void(*)()>(entry_point)();
+	char* envp[] = {nullptr, nullptr};
+	const auto ep_func = static_cast<int(*)(int, char**, char**)>(entry_point);;
+	const int result = ep_func(argc, argv, envp);
 
 	for (const auto& exit_handler : exit_handlers)
 	{
@@ -280,5 +283,19 @@ int __stdcall WinMain(HINSTANCE, HINSTANCE, PSTR, int)
 		destructor();
 	}
 
-	return 0;
+	return result;
+}
+
+int __stdcall WinMain(HINSTANCE, HINSTANCE, char*, int)
+{
+  #if _DEBUG
+	AllocConsole();
+	AttachConsole(GetCurrentProcessId());
+
+	freopen("CONIN$", "r", stdin);
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+#endif
+
+	return main(__argc, __argv);
 }

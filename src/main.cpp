@@ -248,7 +248,10 @@ std::unordered_map<std::string, void*> build_symbol_map()
 
 	symbols["__ZNSt3__112__next_primeEm"] = __next_prime;
 
+	// Actually needs vararg conversion: http://stackoverflow.com/questions/6212665/why-is-eax-zeroed-before-a-call-to-printf
+	// https://github.com/cirosantilli/x86-assembly-cheat/blob/master/x86-64/calling-convention.md
 	symbols["_printf"] = printf;
+
 	symbols["dyld_stub_binder"] = dyld_stub_binder;
 
 	wrap_calling_convention(symbols);

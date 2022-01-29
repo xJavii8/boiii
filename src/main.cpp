@@ -55,17 +55,53 @@ void* create_calling_convention_wrapper(void* func)
 		a.push(rax);
 		a.pushad64();
 
+	        a.push(r9);
+	        a.push(r8);
+
 		a.push(rdi);
 		a.push(rsi);
 		a.push(rdx);
 		a.push(rcx);
 
-		// More than 4 arguments not supported yet
+		// More than 6 arguments not supported yet
 
 		a.pop(r9);
 		a.pop(r8);
 		a.pop(rdx);
 		a.pop(rcx);
+
+		a.call(func);
+
+		a.add(rsp, 0x10);
+		a.mov(ptr(rsp, 0x80, 8), rax);
+
+		a.popad64();
+		a.pop(rax);
+		a.ret();
+	});
+}
+
+void* create_calling_convention_unwrapper(void* func)
+{
+	return utils::hook::assemble([func](utils::hook::assembler& a)
+	{
+		a.push(rax);
+		a.pushad64();
+
+		a.push(rcx);
+		a.push(rdx);
+		a.push(r8);
+		a.push(r9);
+
+		// More than 6 arguments not supported yet
+
+		a.pop(rcx);
+		a.pop(rdx);
+		a.pop(rsi);
+		a.pop(rdi);
+
+	        a.mov(r8, qword_ptr(rsp, 0x88));
+	        a.mov(r9, qword_ptr(rsp, 0x90));
 
 		a.call(func);
 
@@ -252,22 +288,7 @@ int main(const int argc, char* argv[])
 		constructor();
 	}
 
-	const auto entry_point = utils::hook::assemble([&loader](utils::hook::assembler& a)
-	{
-		a.push(rax);
-		a.pushad64();
-
-		a.xor_(rdi, rdi);
-		a.xor_(rsi, rsi);
-
-		a.call(loader.get_mapped_binary().get_entry_point());
-
-	        a.mov(qword_ptr(rsp, 0x80), rax);
-
-		a.popad64();
-		a.pop(rax);
-		a.ret();
-	});
+	const auto entry_point = create_calling_convention_unwrapper(loader.get_mapped_binary().get_entry_point());
 
 	char* envp[] = {nullptr, nullptr};
 	const auto ep_func = static_cast<int(*)(int, char**, char**)>(entry_point);;

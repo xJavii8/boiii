@@ -28,14 +28,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: latest
-      - run: npm install
-      - run: npm run build
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+      - run: yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './dist'
+          path: './build'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

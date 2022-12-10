@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  @responsive {
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-shadow-md {
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .text-shadow-lg {
+      text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .text-shadow-none {
+      text-shadow: none;
+    }
+  }
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  width: 100%;
+  height: 100%;
+}
+
+.grid-container {
+  width: 100%;
+  height: 100%;
+  background-size: 40px 40px;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 1px,
+    transparent 1px
+  );
+}
+
+.same-bg-shadow {
+  display: block;
+  box-shadow: 0 0 200px 100px #151515;
+}
+
+@layer components {
+  .button-container > button,
+  .button-container > a {
+    @apply p-2 bg-[#333] rounded-xl transition-all hover:shadow-none cursor-pointer;
+    width: 100px;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-container > button[disabled] {
+    @apply opacity-40 cursor-default;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+}

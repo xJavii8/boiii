@@ -2,27 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  @responsive {
-    .text-shadow {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .text-shadow-md {
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
-    }
-
-    .text-shadow-lg {
-      text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11),
-        0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .text-shadow-none {
-      text-shadow: none;
-    }
-  }
-}
-
 body,
 html,
 #root {
@@ -56,8 +35,7 @@ html,
 @layer components {
   .button-container > button,
   .button-container > a {
-    @apply p-2 bg-[#333] rounded-xl transition-all hover:shadow-none cursor-pointer;
-    width: 100px;
+    @apply p-1 md:p-2 bg-[#303030] transition-all hover:shadow-none cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[80px] md:w-[100px];
     box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
 

@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App bg-[#151515] text-gray-100">
       <div className="grid-container flex flex-col align-middle items-center justify-center text-center">
-        <span className="mt-[-15vh] bg-[#151515] p-1 same-bg-shadow">
+        <span className="mt-[-15vh] bg-[#151515] p-5 same-bg-shadow">
           <h1 className="md:text-5xl font-bold text-3xl">
             Call of Duty:&nbsp;
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
@@ -12,24 +12,28 @@ function App() {
             </span>
             <br />
           </h1>
-          <h2 className="md:text-4xl text-2xl font-bold pt-4">
+          <h2 className="md:text-4xl text-2xl font-bold pt-2 md:pt-4">
             The way it was meant to be.
           </h2>
-        </span>
-        <span className="button-container flex gap-8 mt-12">
-          <button disabled={true} title="soon™️">
-            Download
-          </button>
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href="https://github.com/momo5502/boiii"
-          >
-            GitHub
-          </a>
-          <a rel="noreferrer" target="_blank" href="https://paypal.me/momo5502">
-            Donate
-          </a>
+          <span className="button-container text-center flex gap-8 mt-8 md:mt-12 align-middle items-center justify-center">
+            <button disabled={true} title="soon™️">
+              Download
+            </button>
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="https://github.com/momo5502/boiii"
+            >
+              GitHub
+            </a>
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="https://paypal.me/momo5502"
+            >
+              Donate
+            </a>
+          </span>
         </span>
       </div>
     </div>

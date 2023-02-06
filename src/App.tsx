@@ -29,7 +29,7 @@ function App() {
             <a
               rel="noreferrer"
               target="_blank"
-              href="https://paypal.me/momo5502"
+              href="https://linktr.ee/momo5502"
             >
               Donate
             </a>

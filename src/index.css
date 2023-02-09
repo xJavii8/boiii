@@ -35,12 +35,10 @@ html,
 @layer components {
   .button-container > button,
   .button-container > a {
-    @apply p-1 md:p-2 bg-[#303030] transition-all hover:shadow-none cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[80px] md:w-[100px];
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+    @apply p-1 md:p-2 bg-[#2e2c2a] text-[#f4f0ebc6] transition-all cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[100px] md:w-[140px];
   }
 
   .button-container > button[disabled] {
     @apply opacity-40 cursor-default;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
 }

@@ -12,7 +12,7 @@ function App() {
             </span>
             <br />
           </h1>
-          <h2 className="md:text-4xl sm:text-2xl text-xl font-bold pt-2 md:pt-4">
+          <h2 className="md:text-4xl sm:text-2xl text-xl font-bold pt-2 md:pt-4 text-[#eeebe79d]">
             The way it was meant to be.
           </h2>
           <span className="button-container text-center flex gap-8 mt-8 md:mt-12 align-middle items-center justify-center">

@@ -35,7 +35,8 @@ html,
 @layer components {
   .button-container > button,
   .button-container > a {
-    @apply p-1 md:p-2 bg-[#2e2c2a] text-[#f4f0ebc6] transition-all cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[100px] md:w-[140px];
+    @apply p-1 md:p-2 bg-[#2a2827] text-[#f4f0ebc6] transition-all cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[100px] md:w-[140px];
+    border: 1px solid #44413f;
   }
 
   .button-container > button[disabled] {

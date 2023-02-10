@@ -16,20 +16,51 @@ html,
   height: 100%;
 }
 
+html {
+  background: black;
+}
+
 .grid-container {
   width: 100%;
   height: 100%;
-  background-size: 40px 40px;
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.15) 1px,
-    transparent 1px
-  );
+  z-index: 99;
+}
+
+.background-container {
+  position: fixed;
+  inset: 0px;
+  z-index: -1;
+}
+
+.background-container::before{
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  background-image: url(../public/bigboiii.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0.25;
+  filter: blur(50px);
+}
+
+.background-container::after{
+  content: "";
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  height: 100%;
+  background-image: url(../public/noise.png);
+  background-repeat: repeat;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
 }
 
 .same-bg-shadow {
   display: block;
-  box-shadow: 0 0 200px 100px #151515;
+  /*box-shadow: 0 0 200px 100px #151515;*/
 }
 
 @layer components {

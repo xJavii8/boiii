@@ -68,6 +68,12 @@ html {
   .button-container > a {
     @apply p-1 md:p-2 bg-[#2a2827] text-[#f4f0ebc6] transition-all cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[80px] md:w-[140px];
     border: 1px solid #44413f;
+    transition: all 0.1s linear;
+  }
+
+  .button-container > a:hover {
+    @apply bg-[#302d2c];
+    border: 1px solid #4a4745;
   }
 
   .button-container > button[disabled] {

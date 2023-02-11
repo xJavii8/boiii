@@ -61,7 +61,7 @@ function App() {
             generateFeatureBox("lock", "Improved Security", "Security vulnerabilities have been patched providing a safer gaming experience."),
             generateFeatureBox("code", "Improved Stability", "Issues and bugs have been fixed resulting in fewer crashes and instabilities."),
             generateFeatureBox("gauge-high", "Improved Performance", "Performance issues have been addressed leading to higher FPS and smoother gameplay."),
-            generateFeatureBox("ranking-star", "Ranked Servers", "Unlike in the original game, ranking up on dedicated servers is possible."),
+            generateFeatureBox("trophy", "Ranked Servers", "Unlike in the original game, ranking up on dedicated servers is possible."),
             generateFeatureBox("cloud", "Workshop Support", "Custom maps and content from the Steam workshop is completely supported."),
             generateFeatureBox("gamepad", "Controller Support", "Want to play using mouse and keyboard or your favourite gamepad? You decide."),
           ]}

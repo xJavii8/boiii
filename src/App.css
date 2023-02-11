@@ -46,16 +46,16 @@
   }
 
   .feature-grid > .feature-box > .title{
-    @apply font-bold text-xl text-center;
+    @apply font-bold text-xl /*text-center*/;
     display: block;
     white-space: nowrap;
-    padding-bottom: 15px;
+    padding-bottom: 16px;
     text-overflow: ellipsis;
     overflow-x: hidden;
   }
 
   .feature-grid > .feature-box > .title > .icon {
-    margin-right: 5px;
+    margin-right: 7px;
   }
 
   .feature-grid > .feature-box > .message {

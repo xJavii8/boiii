@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   width: 100%;
   height: 100%;
@@ -10,4 +14,104 @@
   left: 0;
   right: 0;
   height: 40px;
+}
+
+@layer components {
+  .feature-container {
+    @apply p-16 md:pr-32 md:pl-32 pb-8 /*bg-[#151515]*/;
+    width: 100%;
+    min-height: 100%;
+    /*margin-top: 100vh;*/
+    z-index: 9999;
+    position: relative;
+  }
+
+  .feature-grid {
+    @apply flex;
+    width: 100%;
+    height: 100%;
+    gap: 48px;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+
+  .feature-grid > .feature-box {
+    @apply p-6 bg-[#2a2827] text-[#f4f0ebc6] cursor-default rounded-md md:rounded-lg text-sm md:text-base;
+    border: 1px solid #44413f;
+    transition: all 0.1s linear;
+    max-width: 300px;
+    overflow-x: hidden;
+    justify-content: center;
+  }
+
+  .feature-grid > .feature-box > .title{
+    @apply font-bold text-xl text-center;
+    display: block;
+    white-space: nowrap;
+    padding-bottom: 15px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+
+  .feature-grid > .feature-box > .title > .icon {
+    margin-right: 5px;
+  }
+
+  .feature-grid > .feature-box > .message {
+    display: block;
+  }
+
+  .feature-grid > .feature-box:hover {
+    @apply bg-[#302d2c];
+    border: 1px solid #4a4745;
+  }
+}
+
+
+.mouse-scroll {
+  border-radius: 23px;
+  width: 36px;
+  height: 55px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  margin: 0 auto 20px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.mouse-scroll>* {
+  position: absolute;
+  display: block;
+  top: 29%;
+  left: calc(50% + 2px);
+  width: 4px;
+  height: 4px;
+  margin: -4px 0 0 -4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: ani-mouse 2.5s linear infinite;
+  width: 8px;
+  height: 8px;
+  left: 50%;
+}
+
+@keyframes ani-mouse {
+  0% {
+      top: 29%
+  }
+
+  15% {
+      top: 50%
+  }
+
+  50% {
+      top: 50%
+  }
+
+  100% {
+      top: 29%
+  }
 }

@@ -1,4 +1,16 @@
+
+import { IconName } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
+
+function generateFeatureBox(icon: IconName, title: string, message: string) {
+  return (
+    <div className="feature-box" key={title}>
+      <span className="title"><FontAwesomeIcon icon={['fas', icon]} className="icon" /> {title}</span>
+      <span className="message">{message}</span>
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -36,6 +48,24 @@ function App() {
             </a>
           </span>
         </span>
+
+        <div className="mouse-scroll"><span></span></div>
+      </div>
+      <div className="feature-container">
+        <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6]">What does <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
+              BOIII
+            </span> offer?</span>
+        <hr className="mt-8 mb-16 border-[#f4f0eb52]"></hr>
+        <div className="feature-grid">
+          {[
+            generateFeatureBox("lock", "Improved Security", "Security vulnerabilities have been patched providing a safer gaming experience."),
+            generateFeatureBox("code", "Improved Stability", "Issues and bugs have been fixed resulting in fewer crashes and instabilities."),
+            generateFeatureBox("gauge-high", "Improved Performance", "Performance issues have been addressed leading to higher FPS and smoother gameplay."),
+            generateFeatureBox("ranking-star", "Ranked Servers", "Unlike in the original game, ranking up on dedicated servers is possible."),
+            generateFeatureBox("cloud", "Workshop Support", "Custom maps and content from the Steam workshop is completely supported."),
+            generateFeatureBox("gamepad", "Controller Support", "Want to play using mouse and keyboard or your favourite gamepad? You decide."),
+          ]}
+        </div>
       </div>
     </div>
   );

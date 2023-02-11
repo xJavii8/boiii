@@ -63,7 +63,7 @@
   }
 
   .feature-grid > .feature-box:hover {
-    @apply bg-[#302d2c];
+    @apply bg-[rgb(48,45,44)];
     border: 1px solid #4a4745;
   }
 }

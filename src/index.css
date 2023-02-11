@@ -67,6 +67,10 @@ html {
 }
 
 @layer components {
+  .boiii-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600;
+  }
+
   .button-container > button,
   .button-container > a {
     @apply p-1 md:p-2 bg-[#2a2827] text-[#f4f0ebc6] transition-all cursor-pointer rounded-md md:rounded-lg text-sm md:text-base w-[80px] md:w-[140px];

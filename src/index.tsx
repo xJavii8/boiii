@@ -4,10 +4,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-
-library.add(fas)
+import './fontawesome.css';
+import './fontawesome-solid.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

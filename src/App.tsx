@@ -1,12 +1,9 @@
-
-import { IconName } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
 
-function generateFeatureBox(icon: IconName, title: string, message: string) {
+function generateFeatureBox(icon: string, title: string, message: string) {
   return (
     <div className="feature-box" key={title}>
-      <span className="title"><FontAwesomeIcon icon={['fas', icon]} className="icon" /> {title}</span>
+      <span className="title"><i className={"icon boiii-text fa-solid fa-" + icon}></i> {title}</span>
       <span className="message">{message}</span>
     </div>
   );
@@ -20,7 +17,7 @@ function App() {
         <span className="mt-[-15vh] p-5 same-bg-shadow">
           <h1 className="md:text-5xl sm:text-3xl font-bold text-2xl">
             Call of Duty:&nbsp;
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
+            <span className="boiii-text">
               Black Ops III
             </span>
             <br />
@@ -52,7 +49,7 @@ function App() {
         <div className="mouse-scroll"><span></span></div>
       </div>
       <div className="feature-container">
-        <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6]">What does <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
+        <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6]">What does <span className="boiii-text">
               BOIII
             </span> offer?</span>
         <hr className="mt-8 mb-16 border-[#f4f0eb52]"></hr>

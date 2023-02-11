@@ -113,3 +113,8 @@ html {
       background-color: rgba(117, 110, 107, 0.8);
   }
 }
+
+::selection {
+  color: #2a2827;
+  background: #f4f0eb;
+}

@@ -46,7 +46,7 @@ function App() {
           </span>
         </span>
 
-        <div className="mouse-scroll"><span></span></div>
+        {/*<div className="mouse-scroll"><span></span></div>*/}
       </div>
       <div className="feature-container">
         <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6]">What does <span className="boiii-text">

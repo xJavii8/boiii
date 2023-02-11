@@ -48,11 +48,12 @@ function App() {
 
         {/*<div className="mouse-scroll"><span></span></div>*/}
       </div>
+      <div className="separator"><div></div></div>
       <div className="feature-container">
         <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6]">What does <span className="boiii-text">
               BOIII
             </span> offer?</span>
-        <hr className="mt-8 mb-16 border-[#f4f0eb52]"></hr>
+        <div className="mb-12 md:mt-8 md:mb-16"></div>
         <div className="feature-grid">
           {[
             generateFeatureBox("lock", "Improved Security", "Security vulnerabilities have been patched providing a safer gaming experience."),

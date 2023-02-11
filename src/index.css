@@ -90,6 +90,16 @@ html {
   .button-container > button[disabled] {
     @apply opacity-40 cursor-default;
   }
+
+  .separator {
+    @apply w-[100vw] h-[1px] pl-4 pr-4 md:pr-32 md:pl-32;
+  }
+
+  .separator > div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(244,240,235,0.3) 50%, rgba(0,0,0,0) 100%);
+  }
 }
 
 @media (pointer:fine) {

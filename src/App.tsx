@@ -3,7 +3,7 @@ import "./App.css";
 function generateFeatureBox(icon: string, title: string, message: string) {
   return (
     <div className="feature-box" key={title}>
-      <span className="title"><i className={"icon boiii-text fa-solid fa-" + icon}></i> {title}</span>
+      <span className="title"><i className={"icon boiii-text-narrow fa-solid fa-" + icon}></i> {title}</span>
       <span className="message">{message}</span>
     </div>
   );

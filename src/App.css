@@ -18,7 +18,7 @@
 
 @layer components {
   .feature-container {
-    @apply p-16 md:pr-32 md:pl-32 pb-8 /*bg-[#151515]*/;
+    @apply p-4 md:p-16 md:pr-32 md:pl-32 /*bg-[#151515]*/;
     width: 100%;
     min-height: 100%;
     /*margin-top: 100vh;*/

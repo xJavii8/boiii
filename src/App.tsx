@@ -14,7 +14,7 @@ function App() {
     <div className="App text-gray-100">
       <div className="background-container"></div>
       <div className="grid-container flex flex-col align-middle items-center justify-center text-center">
-        <span className="mt-[-15vh] p-5 same-bg-shadow">
+        <span className="mt-[-15vh] p-5 same-bg-shadow cursor-default">
           <h1 className="md:text-5xl sm:text-3xl font-bold text-2xl">
             Call of Duty:&nbsp;
             <span className="boiii-text">
@@ -50,7 +50,7 @@ function App() {
       </div>
       <div className="separator"><div></div></div>
       <div className="feature-container">
-        <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6]">What does <span className="boiii-text">
+        <span className="w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6] cursor-default">What does <span className="boiii-text">
               BOIII
             </span> offer?</span>
         <div className="mb-12 md:mt-8 md:mb-16"></div>

@@ -41,7 +41,7 @@ html {
   width: 100%;
   height: 100%;
   top: 0px;
-  background-image: url(../public/bigboiii.png);
+  background-image: url(../public/bigboiii.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -55,7 +55,7 @@ html {
   width: 100%;
   top: 0px;
   height: 100%;
-  background-image: url(../public/noise.png);
+  background-image: url(../public/noise.webp);
   background-repeat: repeat;
   opacity: 0.05;
   mix-blend-mode: overlay;

@@ -56,7 +56,7 @@ function App() {
         <div className="mb-12 md:mt-8 md:mb-16"></div>
         <div className="feature-grid">
           {[
-            generateFeatureBox("lock", "Improved Security", "Security vulnerabilities have been patched providing a safer gaming experience."),
+            generateFeatureBox("lock", "Improved Security", "Security vulnerabilities have been patched providing a safe gaming experience."),
             generateFeatureBox("code", "Improved Stability", "Issues and bugs have been fixed resulting in fewer crashes and instabilities."),
             generateFeatureBox("gauge-high", "Improved Performance", "Performance issues have been addressed leading to higher FPS and smoother gameplay."),
             generateFeatureBox("trophy", "Ranked Servers", "Unlike in the original game, ranking up on dedicated servers is possible."),

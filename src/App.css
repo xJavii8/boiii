@@ -27,8 +27,7 @@
   }
 
   .feature-grid {
-    @apply flex;
-    width: 100%;
+    @apply flex w-full xl:w-auto xl:grid xl:grid-cols-auto-3;
     height: 100%;
     gap: 48px;
     justify-content: center;
@@ -45,7 +44,7 @@
     justify-content: center;
   }
 
-  .feature-grid > .feature-box > .title{
+  .feature-grid > .feature-box > .title {
     @apply font-bold text-xl /*text-center*/;
     display: block;
     white-space: nowrap;
@@ -68,7 +67,6 @@
   }
 }
 
-
 .mouse-scroll {
   border-radius: 23px;
   width: 36px;
@@ -82,7 +80,7 @@
   right: 0;
 }
 
-.mouse-scroll>* {
+.mouse-scroll > * {
   position: absolute;
   display: block;
   top: 29%;
@@ -100,18 +98,18 @@
 
 @keyframes ani-mouse {
   0% {
-      top: 29%
+    top: 29%;
   }
 
   15% {
-      top: 50%
+    top: 50%;
   }
 
   50% {
-      top: 50%
+    top: 50%;
   }
 
   100% {
-      top: 29%
+    top: 29%;
   }
 }

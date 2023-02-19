@@ -55,7 +55,7 @@ function App() {
         <span className="xl:mt-8 w-100 font-bold md:text-4xl sm:text-2xl text-xl text-center block text-[#f4f0ebc6] cursor-default">
           What does <span className="boiii-text">BOIII</span> offer?
         </span>
-        <div className="mb-12 md:mb-24 xl:mb-32"></div>
+        <div className="mb-12 md:mb-24"></div>
         <div className="feature-grid">
           {[
             generateFeatureBox(
